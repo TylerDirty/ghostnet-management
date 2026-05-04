@@ -15,17 +15,35 @@
     <h:form>
         <p>
             Breitengrad:
-            <h:inputText value="#{ghostNetBean.ghostNet.latitude}" />
+            <h:inputText id="latitude"
+                         value="#{ghostNetBean.ghostNet.latitude}"
+                         required="true"
+                         requiredMessage="Breitengrad ist Pflicht!">
+                <f:validateDoubleRange minimum="-90" maximum="90" />
+            </h:inputText>
+            <h:message for="latitude" />
         </p>
 
         <p>
             Längengrad:
-            <h:inputText value="#{ghostNetBean.ghostNet.longitude}" />
+            <h:inputText id="longitude"
+                         value="#{ghostNetBean.ghostNet.longitude}"
+                         required="true"
+                         requiredMessage="Längengrad ist Pflicht!">
+                <f:validateDoubleRange minimum="-180" maximum="180" />
+            </h:inputText>
+            <h:message for="longitude" />
         </p>
 
         <p>
             Geschätzte Größe:
-            <h:inputText value="#{ghostNetBean.ghostNet.size}" />
+            <h:inputText id="size"
+                         value="#{ghostNetBean.ghostNet.size}"
+                         required="true"
+                         requiredMessage="Größe ist Pflicht!">
+                <f:validateDoubleRange minimum="0" />
+            </h:inputText>
+            <h:message for="size" />
         </p>
 
         <h:commandButton value="Geisternetz melden"

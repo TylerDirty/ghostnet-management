@@ -6,6 +6,7 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
 import de.hs.callum.ghostnet.repository.GhostNetRepository;
 import jakarta.inject.Inject;
+import java.util.List;
 
 @Named
 @RequestScoped
@@ -33,5 +34,8 @@ public class GhostNetBean {
         System.out.println("Geisternetz wurde gespeichert!");
 
         return "index.xhtml?faces-redirect=true";
+    }
+    public List<GhostNet> getGhostNets() {
+        return repository.findAll();
     }
 }

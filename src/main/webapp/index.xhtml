@@ -4,8 +4,30 @@
 <h:head>
     <title>GhostNet Management</title>
 </h:head>
+
 <h:body>
     <h1>GhostNet Management</h1>
-    <p>Prototyp zur Meldung und Verwaltung von Geisternetzen.</p>
+
+    <h2>Geisternetz melden</h2>
+
+    <h:form>
+        <p>
+            Breitengrad:
+            <h:inputText value="#{ghostNetBean.ghostNet.latitude}" />
+        </p>
+
+        <p>
+            Längengrad:
+            <h:inputText value="#{ghostNetBean.ghostNet.longitude}" />
+        </p>
+
+        <p>
+            Geschätzte Größe:
+            <h:inputText value="#{ghostNetBean.ghostNet.size}" />
+        </p>
+
+        <h:commandButton value="Geisternetz melden"
+                         action="#{ghostNetBean.createGhostNet}" />
+    </h:form>
 </h:body>
 </html>

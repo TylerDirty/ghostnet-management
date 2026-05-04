@@ -2,10 +2,11 @@
 <persistence xmlns="https://jakarta.ee/xml/ns/persistence"
              version="3.0">
 
-    <persistence-unit name="ghostnetPU">
+    <persistence-unit name="ghostnetPU" transaction-type="RESOURCE_LOCAL">
 
         <class>de.hs.callum.ghostnet.entity.GhostNet</class>
         <class>de.hs.callum.ghostnet.entity.Person</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>

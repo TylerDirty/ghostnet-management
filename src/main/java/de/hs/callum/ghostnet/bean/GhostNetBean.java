@@ -4,12 +4,16 @@ import de.hs.callum.ghostnet.entity.GhostNet;
 import de.hs.callum.ghostnet.entity.Status;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
+import de.hs.callum.ghostnet.repository.GhostNetRepository;
+import jakarta.inject.Inject;
 
 @Named
 @RequestScoped
 public class GhostNetBean {
 
     private GhostNet ghostNet = new GhostNet();
+    @Inject
+    private GhostNetRepository repository;
 
     public GhostNetBean() {
         ghostNet.setStatus(Status.GEMELDET);
@@ -24,10 +28,9 @@ public class GhostNetBean {
     }
 
     public String createGhostNet() {
-        System.out.println("Geisternetz wurde erfasst:");
-        System.out.println("Latitude: " + ghostNet.getLatitude());
-        System.out.println("Longitude: " + ghostNet.getLongitude());
-        System.out.println("Size: " + ghostNet.getSize());
+        repository.save(ghostNet);
+
+        System.out.println("Geisternetz wurde gespeichert!");
 
         return "index.xhtml?faces-redirect=true";
     }

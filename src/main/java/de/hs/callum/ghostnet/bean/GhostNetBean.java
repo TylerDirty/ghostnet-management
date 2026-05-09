@@ -38,4 +38,18 @@ public class GhostNetBean {
     public List<GhostNet> getGhostNets() {
         return repository.findAll();
     }
+    public String markRecoveryPending(Long id) {
+        repository.updateStatus(id, Status.BERGUNG_BEVORSTEHEND);
+        return "index.xhtml?faces-redirect=true";
+    }
+
+    public String markRecovered(Long id) {
+        repository.updateStatus(id, Status.GEBORGEN);
+        return "index.xhtml?faces-redirect=true";
+    }
+
+    public String markLost(Long id) {
+        repository.updateStatus(id, Status.VERSCHOLLEN);
+        return "index.xhtml?faces-redirect=true";
+    }
 }

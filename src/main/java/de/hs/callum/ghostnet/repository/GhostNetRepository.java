@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import java.util.List;
+import de.hs.callum.ghostnet.entity.Status;
 
 @ApplicationScoped
 public class GhostNetRepository {
@@ -31,6 +32,23 @@ public class GhostNetRepository {
         try {
             return em.createQuery("SELECT g FROM GhostNet g", GhostNet.class)
                     .getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public void updateStatus(Long id, Status status) {
+        EntityManager em = emf.createEntityManager();
+
+        try {
+            em.getTransaction().begin();
+
+            GhostNet ghostNet = em.find(GhostNet.class, id);
+            if (ghostNet != null) {
+                ghostNet.setStatus(status);
+            }
+
+            em.getTransaction().commit();
         } finally {
             em.close();
         }

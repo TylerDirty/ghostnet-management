@@ -7,6 +7,7 @@ import jakarta.inject.Named;
 import de.hs.callum.ghostnet.repository.GhostNetRepository;
 import jakarta.inject.Inject;
 import java.util.List;
+import de.hs.callum.ghostnet.entity.Person;
 
 @Named
 @RequestScoped
@@ -18,7 +19,9 @@ public class GhostNetBean {
 
     public GhostNetBean() {
         ghostNet.setStatus(Status.GEMELDET);
+        ghostNet.setReporter(new Person());
     }
+
 
     public GhostNet getGhostNet() {
         return ghostNet;

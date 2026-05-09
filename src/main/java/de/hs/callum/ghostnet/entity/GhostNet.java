@@ -16,7 +16,7 @@ public class GhostNet {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Person reporter;
 
     @ManyToOne

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+
+<h:head>
+    <title>GhostNet Management</title>
+</h:head>
+
+<h:body>
+    <nav>
+        <h:link value="Übersicht" outcome="index.xhtml" />
+        |
+        <h:link value="Geisternetz melden" outcome="report.xhtml" />
+        |
+        <h:link value="Status verwalten" outcome="manage.xhtml" />
+    </nav>
+
+    <h2>Geisternetz melden</h2>
+
+    <h:form>
+        <p>
+            Breitengrad:
+            <h:inputText id="latitude"
+                         value="#{ghostNetBean.ghostNet.latitude}"
+                         required="true"
+                         requiredMessage="Breitengrad ist Pflicht!">
+                <f:validateDoubleRange minimum="-90" maximum="90" />
+            </h:inputText>
+            <h:message for="latitude" />
+        </p>
+
+        <p>
+            Längengrad:
+            <h:inputText id="longitude"
+                         value="#{ghostNetBean.ghostNet.longitude}"
+                         required="true"
+                         requiredMessage="Längengrad ist Pflicht!">
+                <f:validateDoubleRange minimum="-180" maximum="180" />
+            </h:inputText>
+            <h:message for="longitude" />
+        </p>
+
+        <p>
+            Geschätzte Größe:
+            <h:inputText id="size"
+                         value="#{ghostNetBean.ghostNet.size}"
+                         required="true"
+                         requiredMessage="Größe ist Pflicht!">
+                <f:validateDoubleRange minimum="0" />
+            </h:inputText>
+            <h:message for="size" />
+        </p>
+
+        <p>
+            Meldende Person:
+            <h:inputText value="#{ghostNetBean.ghostNet.reporter.name}" />
+        </p>
+
+        <p>
+            Telefonnummer:
+            <h:inputText value="#{ghostNetBean.ghostNet.reporter.phone}" />
+        </p>
+
+        <h:commandButton value="Geisternetz melden"
+                         action="#{ghostNetBean.createGhostNet}" />
+    </h:form>
+</h:body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+
+<h:head>
+    <title>GhostNet Management</title>
+</h:head>
+
+<h:body>
+    <nav>
+        <h:link value="Übersicht" outcome="index.xhtml" />
+        |
+        <h:link value="Geisternetz melden" outcome="report.xhtml" />
+        |
+        <h:link value="Status verwalten" outcome="manage.xhtml" />
+    </nav>
+
+    <h2>Gemeldete Geisternetze</h2>
+
+    <h:form>
+        <h:dataTable value="#{ghostNetBean.ghostNets}" var="net" border="1">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                #{net.id}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Breitengrad</f:facet>
+                #{net.latitude}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Längengrad</f:facet>
+                #{net.longitude}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Größe</f:facet>
+                #{net.size}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Status</f:facet>
+                #{net.status}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Aktionen</f:facet>
+
+                <h:commandButton value="Bergung bevorstehend"
+                                 action="#{ghostNetBean.markRecoveryPending(net.id)}" />
+
+                <h:commandButton value="Geborgen"
+                                 action="#{ghostNetBean.markRecovered(net.id)}" />
+
+                <h:commandButton value="Verschollen"
+                                 action="#{ghostNetBean.markLost(net.id)}" />
+            </h:column>
+        </h:dataTable>
+    </h:form>
+</h:body>
+</html>
